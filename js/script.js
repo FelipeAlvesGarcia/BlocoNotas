@@ -10,6 +10,9 @@ const btnCloseNote = document.querySelector("#btn-close-note");//icone para fech
 
 console.log(addNote)
 
+const edit = document.querySelector("#edit");
+const delet = document.querySelector("#delet");
+
 //Eventos
 
 addNote.addEventListener("click", (evt)=>{
@@ -17,6 +20,10 @@ addNote.addEventListener("click", (evt)=>{
     modal.style.display = "block";
     notes.style.display = "none";
     addNote.style.display = "none";
+    let idd = document.querySelector("#input-id").value = ' ';
+    let titulo = document.querySelector("#input-title").value = ' ';
+    let texto = document.querySelector("#input-content").value = ' ';
+
 });
 
 btnCloseNote.addEventListener("click", (evt)=>{
@@ -24,9 +31,11 @@ btnCloseNote.addEventListener("click", (evt)=>{
     modal.style.display = "none";
     notes.style.display = "flex";
     addNote.style.display = "block";
+    listNotes();
 }) ;
 
 btnSaveNote.addEventListener("click", (evt)=>{
+    evt.preventDefault();
     let data = {
         id:document.querySelector("#input-id").value,
         title:document.querySelector("#input-title").value,
@@ -37,6 +46,15 @@ btnSaveNote.addEventListener("click", (evt)=>{
     saveNote(data);
 });
 
+closeModal.addEventListener('click', (evt)=>{
+    modalView.style.display = "none";
+    notes.style.display = "flex";
+    addNote.style.display = "block";
+    evt.preventDefault();
+    document.querySelector('#title-note').innerText = '';
+    document.querySelector('#content-note').innerText = ' ';
+
+})
 
 // Funções
 
@@ -45,18 +63,20 @@ const saveNote = (note) => {
     let notes= loadNotes();
     if (!notes){
       notes=[];
-    }[]
-    if(note.id.length == 0){
-      note.id= new Date().getTime();
-      document.querySelector("#input-id").value=note.id;
-      notes.push(note);
-    }else{
-      for (i=0; i<notes.length; i++){
-        if(notes[i].id==note.id){
-          notes[i]=note;
-        }
-      }
     }
+    console.log(note.id)
+    if(note.id.trim().length == 0){
+        note.id= new Date().getTime();
+        document.querySelector("#input-id").value=note.id;
+        notes.push(note);
+    }else{
+        notes.forEach((item, i) =>{
+        if(item.id==note.id){
+            notes[i] = note;
+        }
+      })
+    }
+    console.log(notes)
     notes=JSON.stringify(notes);
     localStorage.setItem('notes', notes);
    
@@ -65,6 +85,7 @@ const saveNote = (note) => {
 
 const listNotes = ()=>{
     let notes2 = loadNotes();
+    notes.innerHTML = ' ';
     console.log(notes);
     notes2.forEach((item)=>{
         let card = document.createElement('div');
@@ -84,11 +105,14 @@ const listNotes = ()=>{
         let time = document.createElement("p");
         time.innerHTML = "ultima Edição: " + new Date(item.lastTime).toLocaleDateString('pt-BR');
         cardBody.appendChild(time);
-        console.log(item.id)
+        console.log(item.id);
+        card.addEventListener("click",(evt)=>{
+            evt.preventDefault();
+            showNote(item);
+        });
+
     })
 }
-
-//card.addEventListener("click", showNote(item));
 
 const loadNotes = ()=>{
     let notes = localStorage.getItem('notes')
@@ -101,10 +125,28 @@ const loadNotes = ()=>{
     return notes;
 }
 
-listNotes();
-
 function showNote(item){
-    modal.style.display = "block";
+    modalView.style.display = "block";
     notes.style.display = "none";
     addNote.style.display = "none";
+    document.querySelector('#title-note').innerText = item.title;
+    let pContent = document.createElement('p');
+    pContent.innerText = item.content;
+    document.querySelector('#content-note').appendChild (pContent);
+    let pLastTime = document.createElement('p');
+    pLastTime.innerText = new Date(item.lastTime).toLocaleDateString('pt-BR');
+    document.querySelector('#content-note').appendChild (pLastTime);
+
+    edit.addEventListener('click', ()=>{
+        modalView.style.display = "none";
+        modal.style.display = "block";
+        document.querySelector('#title-note').value = item.title;
+        document.querySelector('#content-note').value = item.content;
+    })
+    
+    delet.addEventListener('click', ()=>{
+    
+    })
 }
+
+listNotes();

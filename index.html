@@ -32,9 +32,15 @@
            </div>
            <div id="title-note"> </div>
            <div id="content-note"> </div>
-           <div id="controls-note"> </div>
+           <div id="controls-note"> 
+            <i class="bi bi-trash3-fill" id="delet"></i> 
+            <i class="bi bi-pencil" id="edit"></i>
+           </div>
         </div>
         <div id="modal">
+
+         <div id="title-note"></div>
+
           <div class="mb-3" style="border-bottom: 1px solid #999; display:flex; justify-content: space-between;">
              <div>
                 <a href="" id="btn-save-note">
@@ -49,7 +55,7 @@
          </div>
          <input type="hidden" id="input-id" >
          <div class="mb-3">
-           <label for="title" class="form-label">Title</label>
+           <label for="title" class="form-label" >Title</label>
            <input type="text" class="form-control" id="input-title" placeholder="Title">
          </div>
          <div class="mb-3">
