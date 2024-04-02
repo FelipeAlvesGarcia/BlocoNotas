@@ -1,68 +1,85 @@
+@font-face{
+  src:url("fonte/K2D/K2D-ExtraLight.ttf");
+  font-family: K2D;
+}
+
 *{
     margin:0;
     padding:0;
   }
-  
+
   header{
+    background-color: #0d6efd;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     border-bottom: 1px solid #1b85dc;
-    height: 10vh;
+    height: 90px;
     display:flex;
   }
-  
+
   #logo{
-    width: 30vw;
-    height: 10vh;
+    width: 90px;
+    height: 90px;
+    display:flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 15px;
   }
-  
-  #logo img{
-    height: 8vh;
+
+  #logo > img{
+    height: 60px;
   }
-  #display{
-    width: 50vw;
+  h1{
+    font-family: K2D;
+    color:white;
+    display: flex;
+    align-items: center;
   }
-  
-  #user{
-    width: 20vw;
-  }
-  
+
   main{
-    margin: 2vh 2vw;
-    min-height: 80vh;
+    min-height: calc(80vh - 90px);
   }
-  
+
+  #add-note{
+    position: fixed;
+    left:2%;
+    top:calc(90px + 4%);
+  }
   #notes{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  
+
   .card a{
     text-decoration: none;
   }
-  
+
   #modal-view{
     border:1px solid #1b85dc;
     position: absolute;
     display:none;
     width: 90vw;
     padding:10px;
-   
+    
   }
-  
+
   #close-modal{
     float:right;
   }
-  
+
   #modal{
     border:1px solid #1b85dc;
-    position: absolute;
     padding:2vh 2vw;
     display:none;
-    width: 90vw;
+    border-radius: 5px;
   }
-  
+  label{
+    font-family: K2D;
+    font-weight: bold;
+    color:#0d6efd
+  }
   #controls-note{
     display:flex;
     gap:10px;
   }
-  
