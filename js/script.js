@@ -32,6 +32,8 @@ btnCloseNote.addEventListener("click", (evt)=>{
     notes.style.display = "flex";
     addNote.style.display = "block";
     listNotes();
+    document.querySelector('#title-note').innerHTML = '';
+    document.querySelector('#content-note').innerHTML = ' ';
 }) ;
 
 btnSaveNote.addEventListener("click", (evt)=>{
@@ -51,8 +53,8 @@ closeModal.addEventListener('click', (evt)=>{
     notes.style.display = "flex";
     addNote.style.display = "block";
     evt.preventDefault();
-    document.querySelector('#title-note').innerText = '';
-    document.querySelector('#content-note').innerText = ' ';
+    document.querySelector('#title-note').innerHTML = '';
+    document.querySelector('#content-note').innerHTML = ' ';
 
 })
 
@@ -129,8 +131,12 @@ function showNote(item){
     modalView.style.display = "block";
     notes.style.display = "none";
     addNote.style.display = "none";
-    document.querySelector('#title-note').innerText = item.title;
+    let ptitulo = document.createElement('p');
+    document.querySelector('#title-note').appendChild(ptitulo);
+    ptitulo.innerText = ' ';
+    ptitulo.innerText = item.title;
     let pContent = document.createElement('p');
+    pContent.innerText = ' ';
     pContent.innerText = item.content;
     document.querySelector('#content-note').appendChild (pContent);
     let pLastTime = document.createElement('p');
@@ -140,13 +146,35 @@ function showNote(item){
     edit.addEventListener('click', ()=>{
         modalView.style.display = "none";
         modal.style.display = "block";
-        document.querySelector('#title-note').value = item.title;
-        document.querySelector('#content-note').value = item.content;
+        document.querySelector('#input-title').value = item.title;
+        document.querySelector('#input-content').value = item.content;
+        document.querySelector('#input-id').value = item.id;
+
     })
     
-    delet.addEventListener('click', ()=>{
-    
-    })
+    delet.addEventListener('click', (evt)=>{
+        document.querySelector('#title-note').innerHTML = '';
+        document.querySelector('#content-note').innerHTML = ' ';
+        modalView.style.display = "none";
+        notes.style.display = "flex";
+        addNote.style.display = "block";
+        evt.preventDefault();
+        let notas = localStorage.getItem('notes');
+        notas = JSON.parse(notas);
+        for(let j=0; j<notas.length;j++){
+            if(notas[j].id==item.id){
+                //notas.splice(j, 1);
+                for(let n=j;n<notas.length-1;n++){
+                    notas[n] = notas[n+1];
+                }
+                let deletar = notas.length-1;
+                notas.splice(deletar, 1);
+            }
+        };
+        console.log(notas);
+        localStorage.setItem('notes', JSON.stringify(notas));
+        listNotes();
+    });
 }
 
 listNotes();
