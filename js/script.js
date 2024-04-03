@@ -58,6 +58,14 @@ closeModal.addEventListener('click', (evt)=>{
 
 })
 
+const topo = document.querySelector("#topo");
+topo.addEventListener('click', ()=>{
+    window.scroll({
+        top:0,
+        behavior:"smooth",
+    });
+});
+
 // Funções
 
 const saveNote = (note) => {
@@ -143,7 +151,6 @@ const listNotes = ()=>{
             evt.preventDefault();
             showNote(item);
         });
-
     })
 }
 
