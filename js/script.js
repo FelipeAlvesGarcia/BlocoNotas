@@ -95,11 +95,14 @@ const listNotes = ()=>{
         card.id = 'cartao';
         let cardBody = document.createElement('div');
         cardBody.className = 'card-body';
+        let cardfooter = document.createElement('div');
+        cardBody.style.height  = "100%";
         let titulo = document.createElement("h2");
         titulo.innerHTML= item.title;
         titulo.style.fontFamily = "K2D";
         titulo.style.fontWeight = "bolder";
         titulo.style.color = "#0d6efd";
+        titulo.style.marginBottom = "10px";
         cardBody.appendChild(titulo);
         let hr = document.createElement("hr");
         cardBody.appendChild(hr);
@@ -115,15 +118,20 @@ const listNotes = ()=>{
         texto.style.color = "#012e72";
         texto.style.fontWeight = "bold";
         texto.style.marginLeft = "1rem";
+        texto.style.marginBottom = "3.5rem";
         cardBody.appendChild(texto);
+        cardBody.appendChild(cardfooter);
+        cardfooter.style.position = "absolute";
+        cardfooter.style.width = "calc(100% - 2rem)";
+        cardfooter.style.bottom = "1rem";
         let hr2 = document.createElement("hr");
-        cardBody.appendChild(hr2);
+        cardfooter.appendChild(hr2);
         hr2.style.marginTop = "-0.1rem";
         hr2.style.backgroundColor = "#0d6efd";
         hr2.style.opacity = 0.6;
         let time = document.createElement("p");
         time.innerHTML = "Ultima Edição: " + new Date(item.lastTime).toLocaleDateString('pt-BR');
-        cardBody.appendChild(time);
+        cardfooter.appendChild(time);
         time.style.fontFamily = "K2D";
         time.style.color = "#012e72";
         time.style.fontWeight = "bold";
@@ -154,17 +162,43 @@ function showNote(item){
     modalView.style.display = "block";
     notes.style.display = "none";
     addNote.style.display = "none";
-    let ptitulo = document.createElement('p');
-    document.querySelector('#title-note').appendChild(ptitulo);
+
+    let pLastTime = document.createElement('p');
+    pLastTime.innerText = "Ultima Edição: " + new Date(item.lastTime).toLocaleDateString('pt-BR');
+    document.querySelector('#content-note').appendChild (pLastTime);
+    pLastTime.style.fontFamily = "K2D";
+    pLastTime.style.color = "#012e72";
+    pLastTime.style.fontWeight = "bold";
+    pLastTime.style.marginLeft = "0.5rem";
+    pLastTime.style.marginTop = "2px";
+    pLastTime.style.marginBottom = "7.5px";
+    pLastTime.style.opacity = 0.6;
+    pLastTime.style.fontSize = "15px";
+    pLastTime.style.width = "80%";
+    let hr3 = document.createElement("hr");
+    document.querySelector("#content-note").appendChild(hr3);
+    hr3.style.marginTop = "-0.1rem";
+    hr3.style.backgroundColor = "#0d6efd";
+    hr3.style.opacity = 0.6;
+
+    let ptitulo = document.createElement('h2');
+    document.querySelector('#content-note').appendChild(ptitulo);
     ptitulo.innerText = ' ';
     ptitulo.innerText = item.title;
+    ptitulo.style.fontFamily = "K2D";
+    ptitulo.style.fontWeight = "bolder";
+    ptitulo.style.color = "#0d6efd";
+    ptitulo.style.marginTop = "-7px";
+    ptitulo.style.marginLeft = "0.5rem";
+
     let pContent = document.createElement('p');
     pContent.innerText = ' ';
     pContent.innerText = item.content;
     document.querySelector('#content-note').appendChild (pContent);
-    let pLastTime = document.createElement('p');
-    pLastTime.innerText = new Date(item.lastTime).toLocaleDateString('pt-BR');
-    document.querySelector('#content-note').appendChild (pLastTime);
+    pContent.style.fontFamily = "arial";
+    pContent.style.color = "#012e72";
+    pContent.style.fontWeight = "bold";
+    pContent.style.marginLeft = "1.5rem";
 
     edit.addEventListener('click', ()=>{
         modalView.style.display = "none";

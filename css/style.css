@@ -93,15 +93,27 @@
   }
   #modal-view{
     border:1px solid #1b85dc;
-    position: absolute;
     display:none;
-    width: 90vw;
     padding:10px;
+    border-radius: 5px;
     
   }
-
+  #controls-note{
+    float: right;
+    display: flex;
+    width:5rem;
+    justify-content: space-evenly;
+  }
+  #controls-note i:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
   #close-modal{
     float:right;
+  }
+  #close-modal a:hover{
+    cursor: pointer;
+    opacity: 0.8;
   }
 
   #modal{
