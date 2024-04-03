@@ -8,32 +8,41 @@
     padding:0;
   }
 
+  body{
+    position: relative;
+  }
+
   header{
     background-color: #0d6efd;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    border-bottom: 1px solid #1b85dc;
     height: 90px;
     display:flex;
   }
 
   #logo{
-    width: 90px;
+    margin-left: 4%;
+    width: 70px;
     height: 90px;
     display:flex;
     align-items: center;
     justify-content: right;
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   #logo > img{
     height: 60px;
+  }
+  #logo > img:hover{
+    transition: 200ms;
+    transform: scale(1.05);
   }
   h1{
     font-family: K2D;
     color:white;
     display: flex;
     align-items: center;
+    width:50vw;
   }
 
   main{
@@ -41,9 +50,28 @@
   }
 
   #add-note{
-    position: fixed;
-    left:2%;
-    top:calc(90px + 4%);
+    position: absolute;
+    right:5%;
+    top:calc((90px - 2.5rem)/2);
+    z-index: 999;
+    width:2.5rem;
+    height:2.5rem;
+    
+  }
+  #add-note a{
+    position:absolute;
+    width:2.5rem;
+    height:2.5rem;
+  }
+  #add-note a img{
+    position: absolute;
+    width:2.5rem;
+    height:2.5rem;
+  }
+  #add-note a img:hover{
+    transition: 200ms;
+    opacity: 0.8;
+    transform: scale(1.05);
   }
   #notes{
     display: flex;
@@ -51,10 +79,18 @@
     justify-content: space-around;
   }
 
+  #cartao{
+    width:30rem;
+    margin:0.75rem;
+    min-width: 15rem;
+  }
   .card a{
     text-decoration: none;
   }
-
+  .card-body{
+    border: 1px solid #0d6efd;
+    border-radius:2px;
+  }
   #modal-view{
     border:1px solid #1b85dc;
     position: absolute;
@@ -78,8 +114,4 @@
     font-family: K2D;
     font-weight: bold;
     color:#0d6efd
-  }
-  #controls-note{
-    display:flex;
-    gap:10px;
   }
