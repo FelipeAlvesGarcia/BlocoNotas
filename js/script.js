@@ -181,7 +181,7 @@ function showNote(item){
     pLastTime.style.marginBottom = "7.5px";
     pLastTime.style.opacity = 0.6;
     pLastTime.style.fontSize = "15px";
-    pLastTime.style.width = "80%";
+    pLastTime.style.width = "63%";
     let hr3 = document.createElement("hr");
     document.querySelector("#content-note").appendChild(hr3);
     hr3.style.marginTop = "-0.1rem";
