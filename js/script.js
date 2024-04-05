@@ -34,6 +34,7 @@ btnCloseNote.addEventListener("click", (evt)=>{
     listNotes();
     document.querySelector('#title-note').innerHTML = '';
     document.querySelector('#content-note').innerHTML = ' ';
+    document.querySelector('#id-note').innerHTML = ' ';
 }) ;
 
 btnSaveNote.addEventListener("click", (evt)=>{
@@ -55,6 +56,7 @@ closeModal.addEventListener('click', (evt)=>{
     evt.preventDefault();
     document.querySelector('#title-note').innerHTML = '';
     document.querySelector('#content-note').innerHTML = ' ';
+    document.querySelector('#id-note').innerHTML = ' ';
 
 })
 
